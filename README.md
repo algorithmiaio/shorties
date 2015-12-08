@@ -15,7 +15,7 @@ I decided to make a little short story based on [*Right Ho, Jeeves* by P.G. Wode
 
 We want to take our text and create a trigram file that we will use in step three to generate new text. The trigram model that we are building is essentially a list of word sequences, in our case sequences of 3 words, that appear in the text. [Read more about n-grams](https://en.wikipedia.org/wiki/N-gram) to get a deeper understanding of what the algorithm is constructing.
 
-Let's walk through a short python script based on the one that I used to generate a novel for [NaNoGenMo](https://github.com/dariusk/NaNoGenMo-2015) last month. You can find the full script here [INSERT LINK HERE], which you with run with `python generate-trigrams.py`. While I chose to do this in python, feel free to use the langugage you feel the most comfortable working in!
+Let's walk through a short python script based on the one that I used to generate a novel for [NaNoGenMo](https://github.com/dariusk/NaNoGenMo-2015) last month. You can find the [full script here](https://github.com/algorithmiaio/shorties/tree/master/python%20examples), which you with run with `python generate-trigrams.py`. While I chose to do this in python, feel free to use the langugage you feel the most comfortable working in!
 
 First things first, we need to import the Algorithmia client. If you haven't used Algorithmia before, give the [python docs](http://docs.algorithmia.com/?python#python-client) a quick glance. Short version: install the client with `pip install algorithmia`.
 
@@ -24,7 +24,7 @@ import Algorithmia
 import os
 
 client              = Algorithmia.client('YOUR_API_KEY_HERE')
-trigram_file_name	= "right-ho-trigrams.txt"
+trigram_file_name = "right-ho-trigrams.txt"
 ```
 
 As you can see, we've also set up a few variables at the start of our script to help keep things neat. Be sure to replace `YOUR_API_KEY_HERE` with the API key from your account. Find this key in your Algorithmia profile by clicking on your username in the top right-hand side of the Algorithmia site. 
@@ -62,11 +62,11 @@ Ok, cool! Now we've got a trigram model that we can use to generate our short st
 
 While you can download the trigram file if you want, the Data API makes it easy to use it directly as an argument to the algorithm that we'll use to generate text. The algorithm to generate the trigrams returns the address of the trigram file in your Data collection. Navigate to the "My Data" section on Algorithmia where you'll find the a section for the algorithm on the left hand side. 
 
-[screen shot of data section]
+![my data screenshot](https://github.com/algorithmiaio/shorties/blob/master/img/Mydata.png)
 
 You'll see the newly created trigram file already there for you to use! Copy the full address of the file listed right below the filename. We'll pass this file location to the algorithms we use next.
 
-First, let's make sure that our trigram model will generate some text for us. I like to do a quick sanity check by going to the algorithm [Random Text From Trigram](https://algorithmia.com/algorithms/ngram/RandomTextFromTrigram) and inserting the Data address of my trigram model right in the in-broswer sample code runner. When I stuck in my trigram model, Random Text From Trigram returned `It will be killing two birds with one stone, sir.`. Looks good!
+First, let's make sure that our trigram model will generate some text for us. I like to do a quick sanity check by going to the algorithm [Random Text From Trigram](https://algorithmia.com/algorithms/ngram/RandomTextFromTrigram) and inserting the Data address of my trigram model right in the in-broswer sample code runner. When I stuck in my trigram model, Random Text From Trigram returned "It will be killing two birds with one stone, sir.". Looks good!
 
 Now let's set up a script to generate a whole short story:
 
@@ -76,11 +76,11 @@ import os
 import re
 from random import randint
 
-client            	= Algorithmia.client('YOUR_API_KEY_HERE')
-trigrams_file 		= 'data://.algo/ngram/GenerateTrigramFrequencies/temp/right-ho-trigrams.txt'
-book_title	 		= 'full_book.txt'
-book 				= ''
-book_word_length 	= 7500
+client              = Algorithmia.client('YOUR_API_KEY_HERE')
+trigrams_file     = 'data://.algo/ngram/GenerateTrigramFrequencies/temp/right-ho-trigrams.txt'
+book_title      = 'full_book.txt'
+book        = ''
+book_word_length  = 7500
 
 while len(re.findall(r'\w+', book)) < book_word_length:
   print "Generating new paragraph..."
@@ -121,3 +121,5 @@ Where can you take this next? Here are some other algorithms available in the Ma
 Spend a few minutes browsing the marketplace for other text and language related algorithms. You might find an unexpected algorithm that inspires you to try something new!
 
 ## How to submit
+
+Ready to share? We've set up a [repository on GitHub](https://github.com/algorithmiaio/shorties) so we can read one another's stories! All you need to do is [open an issue](https://github.com/algorithmiaio/shorties/issues) on the repo with a link to your code reposity and book if you choose to host it somewhere else. You can also use the issues as a means to get help with your short story. Just comment on your issue if you are stuck or have any questions and we'll help out!
