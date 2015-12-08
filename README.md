@@ -24,7 +24,7 @@ import Algorithmia
 import os
 
 client              = Algorithmia.client('YOUR_API_KEY_HERE')
-trigram_file_name = "right-ho-trigrams.txt"
+trigram_file_name   = "right-ho-trigrams.txt"
 ```
 
 As you can see, we've also set up a few variables at the start of our script to help keep things neat. Be sure to replace `YOUR_API_KEY_HERE` with the API key from your account. Find this key in your Algorithmia profile by clicking on your username in the top right-hand side of the Algorithmia site. 
@@ -37,8 +37,8 @@ the array of sentences we need to pass into the Generate Trigram algorithm.
 ```
 # generate array of sentences
 with open('rightho.txt', 'r') as content_file:
-    input = content_file.read()
-    corpus = client.algo('StanfordNLP/SentenceSplit/0.1.0').pipe(input)
+    input   = content_file.read()
+    corpus  = client.algo('StanfordNLP/SentenceSplit/0.1.0').pipe(input)
 ```
 
 Now that we have the sentences, we'll pass those into the Generate Trigram Frequencies algorithm along with two tags that mark the beginning and ends of the data. The final paramater is the address of the output file in your Data section on Algorithmia (no need to modify the last three parameters, the tags can be copied and the data URL will automatically put the file into your Data!).
@@ -76,10 +76,10 @@ import os
 import re
 from random import randint
 
-client              = Algorithmia.client('YOUR_API_KEY_HERE')
+client            = Algorithmia.client('YOUR_API_KEY_HERE')
 trigrams_file     = 'data://.algo/ngram/GenerateTrigramFrequencies/temp/right-ho-trigrams.txt'
-book_title      = 'full_book.txt'
-book        = ''
+book_title        = 'full_book.txt'
+book              = ''
 book_word_length  = 7500
 
 while len(re.findall(r'\w+', book)) < book_word_length:
