@@ -1,7 +1,7 @@
 import Algorithmia
 import os
 
-client            = Algorithmia.client('simfxr2fI6g9qElSIhzTJ1BM9DV1')
+client            = Algorithmia.client('YOUR_API_KEY_HERE')
 trigram_file_name	= "right-ho-trigrams.txt"
 
 corpus  = []
