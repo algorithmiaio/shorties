@@ -11,7 +11,7 @@ Additionally there will be two $100 Honorable Mention prizes for outstanding ent
 
 ## The Rules
 
-We're pretty fast and loose with what constitutes a short story. You can define what the "story" part of your project is, whether that means your story is completely original, a modified copy of another book, a collection of tweets woven into a story, or just a non-nonsensical collection of words! The minimum requirements are that your story is primarily in English and at least 7,500 words.
+We're pretty fast and loose with what constitutes a short story. You can define what the "story" part of your project is, whether that means your story is completely original, a modified copy of another book, a collection of tweets woven into a story, or just a non-nonsensical collection of words! The minimum requirements are that your story is primarily in English and no more than 7,500 words.
 
 Each story will be evaluated with the following rubric:
 * Originality
