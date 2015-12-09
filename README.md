@@ -1,7 +1,7 @@
 # The Algorithmia Shorties Contest
 ## Generating short story fiction with algorithms
 
-The Algorithmia Shorties contest is designed to help programmers of all skill levels get started with Natural Language Processing tools and concepts. We are big fans of NaNoGenMo here at Algorithmia, even producing our own NaNoGenMo entry this year, so we thought we'd replicate the fun by creating this generative short story competition!
+The Algorithmia Shorties contest is designed to help programmers of all skill levels get started with Natural Language Processing tools and concepts. We are big fans of [NaNoGenMo](https://github.com/dariusk/NaNoGenMo-2015) here at Algorithmia, even producing [our own NaNoGenMo entry](http://blog.algorithmia.com/post/134355246044/nanogenmo-text-analysis-with-algorithmias) this year, so we thought we'd replicate the fun by creating this generative short story competition!
 
 ## The Prizes
 
@@ -11,9 +11,9 @@ Additionally there will be two $100 Honorable Mention prizes for outstanding ent
 
 ## The Rules
 
-We're pretty fast and loose with what constitutes a short story. You can define what the "story" part of your project is, whether that means your story is completely original, a modified copy of another book, a collection of tweets woven into a story, or just a non-sensical collection of words! The minimum requirements are that your story is primarily in English and at least 7,500 words.
+We're pretty fast and loose with what constitutes a short story. You can define what the "story" part of your project is, whether that means your story is completely original, a modified copy of another book, a collection of tweets woven into a story, or just a non-nonsensical collection of words! The minimum requirements are that your story is primarily in English and at least 7,500 words.
 
-Each story will be evaluated with the following rubrick:
+Each story will be evaluated with the following rubric:
 * Originality
 * Readability
 * Creative use of the Algorithmia API
@@ -27,19 +27,19 @@ The contest runs from December 9th to January 9th. Your submission must entered 
 ### Step One: Find a Corpus
 The corpus is the set of texts that you will be using to base your short story on. For this project, you can base your short story on just one book or you can grab a whole selection of texts from various sources to be your corpus.
 
-If you want to base your short story on another book, try the public domain section of [Feedbooks](http://www.feedbooks.com/publicdomain). Another good site to check out is [Project Gutenberg](https://www.gutenberg.org/), which is home to over 50,000 ebooks. All of the public domain section on Feedbooks as well as most of the content on Project Gutenberg is available for you to use without infringing on copyright law. Other interesting corpuses that folks have used as a base for their generative fiction include software license agreements, personal journals, public speeches, or Wikipedia articles. It's really up to you to choose what you find most interesting!
+If you want to base your short story on another book, try the public domain section of [Feedbooks](http://www.feedbooks.com/publicdomain). Another good site to check out is [Project Gutenberg](https://www.gutenberg.org/), which is home to over 50,000 ebooks. All of the public domain section on Feedbooks as well as most of the content on Project Gutenberg is available for you to use without infringing on copyright law. Other interesting corpora that folks have used as a base for their generative fiction include software license agreements, personal journals, public speeches, or Wikipedia articles. It's really up to you to choose what you find most interesting!
 
 If you use just one book or text source, your resulting generated short story will be much more similar to the original work than if you combine multiple text sources. Same goes for the corpus length. Since we are doing short stories, using a smaller corpus is just fine.
 
 ### Step Two: Generate Trigrams
 
-Now let's get to work. The first thing you want to do with the text you have chosen is to make sure that it's in a pretty clean state. If the book or other text you've slected has copyright notices, table of contents, or other text that won't be needed in your short story, go ahead and remove that so you end up with a `.txt` file containing only the text you want to base your story on.
+Now let's get to work. The first thing you want to do with the text you have chosen is to make sure that it's in a pretty clean state. If the book or other text you've selected has copyright notices, table of contents, or other text that won't be needed in your short story, go ahead and remove that so you end up with a `.txt` file containing only the text you want to base your story on.
 
 I decided to make a little short story based on [*Right Ho, Jeeves* by P.G. Wodehouse](https://en.wikipedia.org/wiki/Right_Ho,_Jeeves). I grabbed the book from Project Gutenberg, so there was a little bit of cleanup to do. I used [Guten-gutter](https://github.com/catseye/Guten-gutter), a python tool for cleaning up Project Gutenberg texts. 
 
 We want to take our text and create a trigram file that we will use in step three to generate new text. The trigram model that we are building is essentially a list of word sequences, in our case sequences of 3 words, that appear in the text. [Read more about n-grams](https://en.wikipedia.org/wiki/N-gram) to get a deeper understanding of what the algorithm is constructing.
 
-Let's walk through a short python script based on the one that I used to generate a novel for [NaNoGenMo](https://github.com/dariusk/NaNoGenMo-2015) last month. You can find the [full script here](https://github.com/algorithmiaio/shorties/tree/master/python%20examples), which you with run with `python generate-trigrams.py`. While I chose to do this in python, feel free to use the langugage you feel the most comfortable working in!
+Let's walk through a short python script based on the one that I used to generate a novel for [NaNoGenMo](https://github.com/dariusk/NaNoGenMo-2015) last month. You can find the [full script here](https://github.com/algorithmiaio/shorties/tree/master/python%20examples), which you with run with `python generate-trigrams.py`. While I chose to do this in python, feel free to use the language you feel the most comfortable working in!
 
 First things first, we need to import the Algorithmia client. If you haven't used Algorithmia before, give the [python docs](http://docs.algorithmia.com/?python#python-client) a quick glance. Short version: install the client with `pip install algorithmia`.
 
@@ -51,7 +51,7 @@ client              = Algorithmia.client('YOUR_API_KEY_HERE')
 trigram_file_name   = "right-ho-trigrams.txt"
 ```
 
-As you can see, we've also set up a few variables at the start of our script to help keep things neat. Be sure to replace `YOUR_API_KEY_HERE` with the API key from your account. Find this key in your Algorithmia profile by clicking on your username in the top right-hand side of the Algorithmia site. 
+As you can see, we've also set up a few variables at the start of our script to help keep things neat. Be sure to replace `YOUR_API_KEY_HERE` with the API key from your account. Find this key in your Algorithmia profile by clicking on your user name in the top right-hand side of the Algorithmia site. 
 
 To create our short story, we're going to use the algorithms [Generate Trigram Frequencies](https://algorithmia.com/algorithms/ngram/GenerateTrigramFrequencies) and [Sentence Split](https://algorithmia.com/algorithms/StanfordNLP/SentenceSplit). Because Generate Trigram Frequencies takes an array of strings, we'll run our entire text file through Sentence Split which conveniently take a block of text and returns the sentences as an array of strings. 
 
@@ -65,7 +65,7 @@ with open('rightho.txt', 'r') as content_file:
     corpus  = client.algo('StanfordNLP/SentenceSplit/0.1.0').pipe(input)
 ```
 
-Now that we have the sentences, we'll pass those into the Generate Trigram Frequencies algorithm along with two tags that mark the beginning and ends of the data. The final paramater is the address of the output file in your Data section on Algorithmia (no need to modify the last three parameters, the tags can be copied and the data URL will automatically put the file into your Data!).
+Now that we have the sentences, we'll pass those into the Generate Trigram Frequencies algorithm along with two tags that mark the beginning and ends of the data. The final parameter is the address of the output file in your Data section on Algorithmia (no need to modify the last three parameters, the tags can be copied and the data URL will automatically put the file into your Data!).
 
 ```
 #  generate trigrams
@@ -90,7 +90,7 @@ While you can download the trigram file if you want, the Data API makes it easy 
 
 You'll see the newly created trigram file already there for you to use! Copy the full address of the file listed right below the filename. We'll pass this file location to the algorithms we use next.
 
-First, let's make sure that our trigram model will generate some text for us. I like to do a quick sanity check by going to the algorithm [Random Text From Trigram](https://algorithmia.com/algorithms/ngram/RandomTextFromTrigram) and inserting the Data address of my trigram model right in the in-broswer sample code runner. When I stuck in my trigram model, Random Text From Trigram returned "It will be killing two birds with one stone, sir.". Looks good!
+First, let's make sure that our trigram model will generate some text for us. I like to do a quick sanity check by going to the algorithm [Random Text From Trigram](https://algorithmia.com/algorithms/ngram/RandomTextFromTrigram) and inserting the Data address of my trigram model right in the in-browser sample code runner. When I stuck in my trigram model, Random Text From Trigram returned "It will be killing two birds with one stone, sir.". Looks good!
 
 Now let's set up a script to generate a whole short story:
 
@@ -124,7 +124,7 @@ print "Done!"
 print "You book is now complete. Give " + book_title + " a read now!"
 ```
 
-Be sure to update the `trigrams_file` varible with the address of your trigram file. It will look very similar, with the exception of what your named it!
+Be sure to update the `trigrams_file` variable with the address of your trigram file. It will look very similar, with the exception of what your named it!
 
 Following this script, you can see that we have constructed a simple loop that checks the book length and if it is less than 7,500 words, will make a call to the algorithm [Generate Paragraph From Trigram](https://algorithmia.com/algorithms/lizmrush/GenerateParagraphFromTrigram). Again we pass in the beginning and ending tags from our trigram model, and this time we specify a paragraph length in sentences as the final parameter to our call. I let my program pick a random number between 1 and 9 with `(randint(1,9))`. 
 
@@ -146,4 +146,4 @@ Spend a few minutes browsing the marketplace for other text and language related
 
 ### How to submit
 
-Ready to share? We've set up a [repository on GitHub](https://github.com/algorithmiaio/shorties) so we can read one another's stories! All you need to do is [open an issue](https://github.com/algorithmiaio/shorties/issues) on the repo with a link to your code reposity and book if you choose to host it somewhere else. You can also use the issues as a means to get help with your short story. Just comment on your issue if you are stuck or have any questions and we'll help out!
+Ready to share? We've set up this repo so we can read one another's stories! All you need to do is [open an issue](https://github.com/algorithmiaio/shorties/issues) with a link to your code repository and book if you choose to host it somewhere else. You can also use the issues as a means to get help with your short story. Just comment on your issue if you are stuck or have any questions and we'll help out!
