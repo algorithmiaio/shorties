@@ -1,13 +1,37 @@
-# How to generate a short story
+# The Algorithmia Shorties Contest
+## Generating short story fiction with algorithms
 
-## Step One: Find a Corpus
+The Algorithmia Shorties contest is designed to help programmers of all skill levels get started with Natural Language Processing tools and concepts. We are big fans of NaNoGenMo here at Algorithmia, even producing our own NaNoGenMo entry this year, so we thought we'd replicate the fun by creating this generative short story competition!
+
+## The Prizes
+
+We'll be giving away $300 USD for the top generative short story entry!
+
+Additionally there will be two $100 Honorable Mention prizes for outstanding entries. We'll also highlight the winners and some of our favorite entries on the Algorithmia blog.
+
+## The Rules
+
+We're pretty fast and loose with what constitutes a short story. You can define what the "story" part of your project is, whether that means your story is completely original, a modified copy of another book, a collection of tweets woven into a story, or just a non-sensical collection of words! The minimum requirements are that your story is primarily in English and at least 7,500 words.
+
+Each story will be evaluated with the following rubrick:
+* Originality
+* Readability
+* Creative use of the Algorithmia API
+
+We'll read though all the entries and grab the top 20. The top 20 stories will be sent to two Seattle school teachers for some old-school red ink grading before the final winner selection.
+
+The contest runs from December 9th to January 9th. Your submission must entered before midnight PST on January 9th. Winners will be announced on January 13th.
+
+## How to generate a short story
+
+### Step One: Find a Corpus
 The corpus is the set of texts that you will be using to base your short story on. For this project, you can base your short story on just one book or you can grab a whole selection of texts from various sources to be your corpus.
 
 If you want to base your short story on another book, try the public domain section of [Feedbooks](http://www.feedbooks.com/publicdomain). Another good site to check out is [Project Gutenberg](https://www.gutenberg.org/), which is home to over 50,000 ebooks. All of the public domain section on Feedbooks as well as most of the content on Project Gutenberg is available for you to use without infringing on copyright law. Other interesting corpuses that folks have used as a base for their generative fiction include software license agreements, personal journals, public speeches, or Wikipedia articles. It's really up to you to choose what you find most interesting!
 
 If you use just one book or text source, your resulting generated short story will be much more similar to the original work than if you combine multiple text sources. Same goes for the corpus length. Since we are doing short stories, using a smaller corpus is just fine.
 
-## Step Two: Generate Trigrams
+### Step Two: Generate Trigrams
 
 Now let's get to work. The first thing you want to do with the text you have chosen is to make sure that it's in a pretty clean state. If the book or other text you've slected has copyright notices, table of contents, or other text that won't be needed in your short story, go ahead and remove that so you end up with a `.txt` file containing only the text you want to base your story on.
 
@@ -106,7 +130,7 @@ Following this script, you can see that we have constructed a simple loop that c
 
 Finally the script will write the entire book to a `.txt` file in the same directory and you're ready to start reading!
 
-## Moving Beyond the Trigram
+### Moving Beyond the Trigram
 
 Now that you've got the basics down, feel free to make changes to the scripts or come up with something totally different. If you need inspiration on what kinds of books you can generate, be sure to check out the [NaNoGenMo 2015](https://github.com/dariusk/NaNoGenMo-2015) repo to see what other fiction generating programmers have come up with!
 
@@ -120,6 +144,6 @@ Where can you take this next? Here are some other algorithms available in the Ma
 
 Spend a few minutes browsing the marketplace for other text and language related algorithms. You might find an unexpected algorithm that inspires you to try something new!
 
-## How to submit
+### How to submit
 
 Ready to share? We've set up a [repository on GitHub](https://github.com/algorithmiaio/shorties) so we can read one another's stories! All you need to do is [open an issue](https://github.com/algorithmiaio/shorties/issues) on the repo with a link to your code reposity and book if you choose to host it somewhere else. You can also use the issues as a means to get help with your short story. Just comment on your issue if you are stuck or have any questions and we'll help out!
